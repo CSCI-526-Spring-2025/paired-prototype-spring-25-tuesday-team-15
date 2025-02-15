@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
 {
-    public GameObject tilePrefab; // Reference to Tile Prefab
-    public float spawnInterval = 2f; // Time between spawns
-    public int gridWidth = 1; // Set this based on your grid size
+    public GameObject tilePrefab;
+    public float spawnInterval = 4f;
+    public float gridTop = 20f; // Adjust this to the top row of your grid
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnTile), 1f, spawnInterval); // Auto-spawn tiles
+        InvokeRepeating(nameof(SpawnTile), 1f, spawnInterval);
     }
 
     void SpawnTile()
     {
         if (tilePrefab != null)
         {
-            // Generate a random X position within the grid width
-            float randomX = Random.Range(-gridWidth / 2, gridWidth / 2) +   0.5f;
+            int randomColumn = Random.Range(-4, 6);
+            Debug.Log("Random Column: " + randomColumn);  // Log the random column
 
-            // Spawn at the top of the grid
-            Vector2 spawnPosition = new Vector2(randomX, 15); // Adjust '20' based on grid height
+            Vector2 spawnPosition = new Vector2(randomColumn, gridTop);
+            Debug.Log("Spawn Position: " + spawnPosition);  // Log the final spawn position
 
             Instantiate(tilePrefab, spawnPosition, Quaternion.identity);
         }
