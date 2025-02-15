@@ -3,7 +3,7 @@ using UnityEngine;
 public class TileSpawner : MonoBehaviour
 {
     public GameObject tilePrefab;
-    public float spawnInterval = 4f;
+    public float spawnInterval = 6f;
     public float gridTop = 20f; // Adjust this to the top row of your grid
 
     void Start()
