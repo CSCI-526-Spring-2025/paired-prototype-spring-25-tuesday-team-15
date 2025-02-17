@@ -4,7 +4,7 @@ using TMPro;
 public class Tile : MonoBehaviour
 {
     private TextMeshProUGUI letterText;
-    private static string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static string alphabet = "SUN";
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -26,4 +26,9 @@ public class Tile : MonoBehaviour
     {
         spriteRenderer.color = new Color(Random.Range(0.5f, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f), 1f);
     }
+
+    public string GetLetter()
+{
+    return letterText.text; // Returns the letter displayed on the tile
+}
 }
