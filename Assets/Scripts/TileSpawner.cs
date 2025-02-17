@@ -69,7 +69,7 @@ public class TileSpawner : MonoBehaviour
     {
         List<Vector2> tilesToClear = new List<Vector2>();
 
-        // **Fix: Check all substrings in rows**
+        // **Check all substrings in rows**
         for (int y = -10; y <= 10; y++)
         {
             string currentWord = "";
@@ -95,7 +95,7 @@ public class TileSpawner : MonoBehaviour
             tilesToClear.AddRange(FindWordsInSequence(currentWord, wordPositions));
         }
 
-        // **Fix: Check all substrings in columns**
+        // **Check all substrings in columns**
         for (int x = -4; x <= 5; x++)
         {
             string currentWord = "";
@@ -170,7 +170,8 @@ public class TileSpawner : MonoBehaviour
     {
         Debug.Log("🔽 Applying Gravity...");
 
-        for (int y = -9; y >= -10; y--)
+        // **Start from second-bottom row and move up**
+        for (int y = -9; y <= 10; y++)
         {
             for (int x = -4; x <= 5; x++)
             {
@@ -180,6 +181,7 @@ public class TileSpawner : MonoBehaviour
                     int fallDistance = 0;
                     Vector2 checkPos = new Vector2(x, y - 1);
 
+                    // **Move tile down until it hits another tile or bottom**
                     while (!tileGrid.ContainsKey(checkPos) && checkPos.y > -10)
                     {
                         fallDistance++;
@@ -189,8 +191,12 @@ public class TileSpawner : MonoBehaviour
                     if (fallDistance > 0)
                     {
                         Vector2 newPos = new Vector2(x, y - fallDistance);
+
+                        // **Move tile in grid**
                         tileGrid[newPos] = tileGrid[pos];
                         tileGrid.Remove(pos);
+
+                        // **Move tile visually**
                         tileGrid[newPos].transform.position = newPos;
                     }
                 }
