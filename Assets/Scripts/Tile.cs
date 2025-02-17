@@ -6,11 +6,12 @@ public class Tile : MonoBehaviour
     private TextMeshProUGUI letterText;
     private static string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private SpriteRenderer spriteRenderer;
+    private string tileLetter; 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        letterText = GetComponentInChildren<TextMeshProUGUI>(); // Auto-detects LetterText
+        letterText = GetComponentInChildren<TextMeshProUGUI>(); 
 
         AssignRandomLetter();
         AssignRandomColor();
@@ -19,11 +20,27 @@ public class Tile : MonoBehaviour
     void AssignRandomLetter()
     {
         char randomLetter = alphabet[Random.Range(0, alphabet.Length)];
-        letterText.text = randomLetter.ToString();
+        tileLetter = randomLetter.ToString();
+        letterText.text = tileLetter;
     }
 
     void AssignRandomColor()
     {
-        spriteRenderer.color = new Color(Random.Range(0.5f, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f), 1f);
+        Color[] tetrisColors = new Color[] {
+            Color.cyan, 
+            Color.blue, 
+            new Color(1f, 0.5f, 0f, 1f), 
+            Color.yellow, 
+            Color.green, 
+            new Color(0.5f, 0f, 0.5f, 1f), 
+            Color.red
+        };
+
+        spriteRenderer.color = tetrisColors[Random.Range(0, tetrisColors.Length)];
+    }
+
+    public string GetTileLetter()
+    {
+        return tileLetter;
     }
 }
