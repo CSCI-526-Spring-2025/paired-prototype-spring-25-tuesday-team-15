@@ -6,11 +6,11 @@ public class TileSpawner : MonoBehaviour
 
     public GameObject tilePrefab;
 
-    public float gridTop = 10f; // Adjust this to the top row of your grid
+    public float gridTop = 10f;
 
     private GameObject currentTile;
 
-    private bool canSpawn = true; // Track spawning state
+    private bool canSpawn = true;
 
 
     void Awake()
@@ -26,7 +26,7 @@ public class TileSpawner : MonoBehaviour
 
     public void SpawnTile()
     {
-        if (!canSpawn || GridManager.Instance.isGameOver) return; // Stop if game over
+        if (!canSpawn || GridManager.Instance.isGameOver) return; 
 
         if (tilePrefab != null)
         {

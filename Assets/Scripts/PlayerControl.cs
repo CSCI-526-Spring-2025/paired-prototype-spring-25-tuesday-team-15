@@ -70,12 +70,6 @@ public class PlayerControl : MonoBehaviour
 
     private bool IsValidMove(Vector3 position)
     {
-        if (GridManager.Instance == null) 
-        {
-            Debug.LogError("GridManager is NULL. Ensure it exists in the scene.");
-            return false; // Prevents NullReferenceException
-        }
-
         if (position.x < -4.5f || position.x > 5f || position.y < -9.5f)
         {
             return false;
@@ -101,10 +95,7 @@ public class PlayerControl : MonoBehaviour
         string tileLetter = tileComponent != null ? tileComponent.GetTileLetter() : "?";
 
         Vector2 snappedPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
-        Debug.Log($"✅ Tile '{tileLetter}' placed at {snappedPosition}");
-
         GridManager.Instance.RegisterTile(snappedPosition, tileLetter);
-
         OnTilePlaced?.Invoke();
     }
 
