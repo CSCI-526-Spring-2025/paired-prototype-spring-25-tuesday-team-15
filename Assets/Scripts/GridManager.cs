@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Text;
-using System;
 
 public class GridManager : MonoBehaviour
 {
@@ -11,9 +10,8 @@ public class GridManager : MonoBehaviour
 
     private HashSet<string> wordDictionary = new HashSet<string>();
 
-    // List<Vector2> wordPositions = new List<Vector2>(); // To store positions of found words
     public bool isGameOver = false;  // Track game over state
-
+    
 
     private void Awake()
     {
@@ -39,6 +37,10 @@ public class GridManager : MonoBehaviour
         {
             string[] words = wordFile.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
             wordDictionary = new HashSet<string>(words);
+            foreach (string word in words)
+            {
+                wordDictionary.Add(word.Trim().ToUpper());  // Trim spaces & convert to uppercase
+            }
             Debug.Log($"📖 Loaded {wordDictionary.Count} words into the dictionary!");
         }
         else
@@ -227,7 +229,6 @@ public class GridManager : MonoBehaviour
         ApplyGravity();
     }
 
-    // **Helper function to find a tile at a position**
     private GameObject FindTileAtPosition(Vector2 position)
     {
         Collider2D[] colliders = Physics2D.OverlapPointAll(position);

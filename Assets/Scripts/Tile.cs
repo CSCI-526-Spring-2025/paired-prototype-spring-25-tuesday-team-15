@@ -4,7 +4,13 @@ using TMPro;
 public class Tile : MonoBehaviour
 {
     private TextMeshProUGUI letterText;
-    private static string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static string alphabet = 
+        "AAAAA"    // 5 A's
+    + "EEEE"   // 4 E's
+    + "III"     // 3 I's
+    + "OOO"    // 3 O's
+    + "UUU"       // 3 U's
+    + "BBCCDDFFGGHHJJKKLLMMMNNPPPQRRSSTTVWWXYZ";
     private SpriteRenderer spriteRenderer;
     private string tileLetter; 
 
